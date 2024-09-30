@@ -1,0 +1,48 @@
+.dishes_head_button_container {
+    display: flex;
+    align-items: center;
+    padding-left: 96px;
+    gap: 16px;
+}
+
+.dishes_list_head_button_0 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    height: 45px;
+    width: 128px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    gap: 4px;
+    transition: background-color 1s ease 0s;
+    &:hover{
+        background-color: grey;
+    }
+}
+
+.dishes_list_head_button_0 img {
+    width: 18px;
+    margin-bottom: 4px;
+}
+
+.dishes_list_head_button_1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    height: 45px;
+    width: 45px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 1s ease 0s;
+    &:hover{
+        background-color: grey;
+    }
+}
+
+.dishes_list_head_button_1 img {
+    width: 32px;
+    height: 32px;
+}
