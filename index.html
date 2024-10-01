@@ -12,10 +12,13 @@
         <link rel="stylesheet" href="./assets/src/css/media_query.css" />
         <link rel="stylesheet" href="./assets/src/css/dishes_list.css" />
         <link rel="stylesheet" href="./assets/src/css/dishes_list_buttons.css" />
-        <script src="/script.js"></script>
+        <script src="/script.js" defer></script>
         <script src="./assets/src/js/template.js"></script>
+        <script src="./assets/src/js/database.js"></script>
+        <script src="./assets/src/js/calculator.js"></script>
+        <script src="./assets/src/js/addToCart.js"></script>
     </head>
-    <body>
+    <body onload="init()">
         <header><img src="./assets/logo/Logo.png" alt="" /></header>
         <main>
             <section class="section_left_side">
@@ -34,37 +37,16 @@
                         <span><img src="./assets/icon/delivery.png" alt="" /> 15.00€</span>
                     </div>
                     <div class="menu_selection">
-                        <button>Sushi</button>
-                        <button>Dessert</button>
-                        <button>Getränke</button>
+                        <a href="#sushiContent">Sushi</a>
+                        <a href="#dessertContent">Dessers</a>
+                        <a href="#drinkContent">Getränke</a>
                     </div>
                     <h2>Sushi</h2>
-                    <div class="content_sushi">
-                        <div class="menu_box">
-                            <h3>Sake Nigiri</h3>
-                            <p>Lachs auf Reis, serviert mit Sojasauce und Wasabi</p>
-                            <h3>4,50€</h3>
-                            <button class="add_to_cart_button">In den Warenkorb</button>
-                        </div>
-                    </div>
+                    <div id="sushiContent" class="content_sushi"></div>
                     <h2>Dessert</h2>
-                    <div class="content_dessert">
-                        <div class="menu_box">
-                            <h3>Mochi Eis</h3>
-                            <p>Japanisches Reiskuchen-Eis in verschiedenen Geschmacksrichtungen</p>
-                            <h3>3,50€</h3>
-                            <button class="add_to_cart_button">In den Warenkorb</button>
-                        </div>
-                    </div>
+                    <div id="dessertContent" class="content_dessert"></div>
                     <h2>Getränke</h2>
-                    <div class="content_drinks">
-                        <div class="menu_box">
-                            <h3>Grüner Tee</h3>
-                            <p>Heißer grüner Tee, frisch aufgebrüht</p>
-                            <h3>2,50€</h3>
-                            <button class="add_to_cart_button">In den Warenkorb</button>
-                        </div>
-                    </div>
+                    <div id="drinkContent" class="content_drinks"></div>
                 </div>
             </section>
             <section class="section_right_side">
@@ -72,16 +54,15 @@
                     <h2>Warenkorb</h2>
                     <h3>Lieferoption</h3>
                     <p>(Liefergebühr 5,00€)</p>
-                    <div class="delivery_or_not">
-                        <div id="pickup delivery_selected" class="slider_option">Abholen</div>
+                    <div class="delivery_or_not" onclick="toggleOrderType()">
+                        <div id="pickup" class="slider_option selected">Abholen</div>
                         <div id="delivery" class="slider_option">Liefern</div>
                         <div id="indicator"></div>
                     </div>
+                    <div id="shoppingcartContent"></div>
                 </div>
             </section>
         </main>
-        <footer>
-            <span>©Copyright 2024 Timo Kosfeld</span>
-        </footer>
+        <footer></footer>
     </body>
 </html>

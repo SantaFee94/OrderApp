@@ -1,8 +1,6 @@
 .section_left_side {
     width: calc(100% - 300px);
     flex-grow: 1;
-    height: 1500px;
-   
 }
 
 .dishes_list_head {
@@ -10,12 +8,10 @@
 }
 
 .dishes_main_container {
-    
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin: 0 200px;
-    
+    margin-left: 20px;
 }
 
 .user_information {
@@ -53,7 +49,7 @@
     padding-top: 32px;
 }
 
-.menu_selection button {
+.menu_selection a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,15 +61,16 @@
     font-size: 16px;
     gap: 4px;
     font-weight: bold;
+    background-color: #f0f0f0;
+    text-decoration: none;
+    color: black;
     transition: background-color 1s ease 0s;
-    &:hover{
+    &:hover {
         background-color: grey;
     }
 }
 
-
-
-.add_to_cart_button{
+.add_to_cart_button {
     width: 150px;
     background-color: orange;
     border: none;
@@ -82,7 +79,7 @@
     margin-top: 8px;
     cursor: pointer;
     transition: background-color 500ms ease 0s;
-    &:hover{
+    &:hover {
         background-color: rgb(255, 0, 0);
     }
 }

@@ -33,6 +33,12 @@ main {
     border-radius: 5px;
     padding: 8px;
     border: black 1px solid;
+    margin-bottom: 12px;
+}
+
+#pickup.selected,
+#delivery.selected {
+  background-color: #f36805;
 }
 
 footer {
