@@ -126,6 +126,3 @@ let drinks = [
         amount: 0,
     },
 ];
-
-
-

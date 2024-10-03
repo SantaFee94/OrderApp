@@ -2,7 +2,6 @@
     width: 300px;
     flex-grow: 1;
     padding: 8px;
-    
 }
 
 .basket_main_container {
@@ -10,10 +9,13 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 400px;
     position: sticky;
     top: 0;
-    
+}
+
+.basket_head {
+    display: flex;
+    align-items: center;
 }
 
 .delivery_or_not {
@@ -40,6 +42,17 @@
     cursor: pointer;
 }
 
+.cart-item-count {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 0.2em 0.5em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.8em;
+}
+
 #pickup {
     border-radius: 20px 0 0 20px;
 }
@@ -51,4 +64,36 @@
 #pickup_selected,
 #delivery_selected {
     background-color: orange;
+}
+
+#shoppingcartContent {
+    padding-top: 16px;
+}
+
+.menu_box_shoppingcart {
+    margin-bottom: 8px;
+    margin-bottom: 8px;
+    padding: 8px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px black solid;
+}
+
+#toPay {
+    font-weight: bold;
+    color: red;
+}
+
+.order_button {
+    width: 150px;
+    background-color: orange;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    margin-top: 8px;
+    cursor: pointer;
+    transition: background-color 500ms ease 0s;
+    &:hover {
+        background-color: rgb(0, 255, 0);
+    }
 }

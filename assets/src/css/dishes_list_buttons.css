@@ -5,7 +5,7 @@
     gap: 16px;
 }
 
-.dishes_list_head_button_0 {
+.dishes_list_head_button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -22,12 +22,12 @@
     }
 }
 
-.dishes_list_head_button_0 img {
+.dishes_list_head_button img {
     width: 18px;
     margin-bottom: 4px;
 }
 
-.dishes_list_head_button_1 {
+.dishes_list_head_like_button {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,7 +42,7 @@
     }
 }
 
-.dishes_list_head_button_1 img {
+.dishes_list_head_like_button img {
     width: 32px;
     height: 32px;
 }

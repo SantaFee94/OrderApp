@@ -6,63 +6,108 @@
         <title>Bestell App</title>
         <link rel="icon" href="./assets/icon/favicon-32x32.png" />
         <link rel="stylesheet" href="./assets/src/css/standart.css" />
-        <link rel="stylesheet" href="/style.css" />
+        <link rel="stylesheet" href="./assets/src/css/style.css" />
         <link rel="stylesheet" href="./assets/src/css/basket.css" />
         <link rel="stylesheet" href="./assets/src/css/fonts.css" />
         <link rel="stylesheet" href="./assets/src/css/media_query.css" />
         <link rel="stylesheet" href="./assets/src/css/dishes_list.css" />
         <link rel="stylesheet" href="./assets/src/css/dishes_list_buttons.css" />
-        <script src="/script.js" defer></script>
+        <link rel="stylesheet" href="./assets/src/css/overlay.css" />
+        <script src="./assets/src/js/script.js" defer></script>
         <script src="./assets/src/js/template.js"></script>
         <script src="./assets/src/js/database.js"></script>
-        <script src="./assets/src/js/calculator.js"></script>
         <script src="./assets/src/js/addToCart.js"></script>
+        <script src="./assets/src/js/mediaQuery.js"></script>
+        <script src="./assets/src/js/overlay.js"></script>
     </head>
     <body onload="init()">
-        <header><img src="./assets/logo/Logo.png" alt="" /></header>
-        <main>
-            <section class="section_left_side">
-                <div class="bgr"></div>
-                <div class="dishes_main_container">
-                    <div class="dishes_list_head">
-                        <h1>Sushi Resturant</h1>
-                        <div class="dishes_head_button_container">
-                            <button class="dishes_list_head_button_0"><img src="./assets/icon/i_icon.png" alt="" />Über uns</button>
-                            <button class="dishes_list_head_button_1"><img src="./assets/icon/like_heart.png" alt="" /></button>
+        <div class="wrapper">
+            <header><img src="./assets/logo/Logo.png" alt="" /></header>
+            <main>
+                <section class="section_left_side">
+                    <div class="bgr"></div>
+                    <div class="dishes_main_container">
+                        <div class="dishes_list_head">
+                            <h1>Sushi Resturant</h1>
+                            <div class="dishes_head_button_container">
+                                <button onclick="openOverlay()" class="dishes_list_head_button"><img src="./assets/icon/i_icon.png" alt="" />Über uns</button>
+                                <button onclick="toggleLike()" class="dishes_list_head_like_button"><img id="likeImg" src="./assets/icon/none_like_heart.png" alt="" /></button>
+                            </div>
                         </div>
+                        <div class="user_information">
+                            <a onclick="openReviewsOverlay()"><img src="./assets/icon/like_star.png" alt="" /><b>4.7</b>(200+)</a>
+                            <span><img src="./assets/icon/bag.png" alt="" />Min. 50.00€</span>
+                            <span><img src="./assets/icon/delivery.png" alt="" /> 15.00€</span>
+                        </div>
+                        <div class="menu_selection">
+                            <a href="#sushiContent">Sushi</a>
+                            <a href="#dessertContent">Dessers</a>
+                            <a href="#drinkContent">Getränke</a>
+                        </div>
+                        <h2>Sushi</h2>
+                        <div id="sushiContent" class="content_sushi"></div>
+                        <h2>Dessert</h2>
+                        <div id="dessertContent" class="content_dessert"></div>
+                        <h2>Getränke</h2>
+                        <div id="drinkContent" class="content_drinks"></div>
                     </div>
-                    <div class="user_information">
-                        <a onclick=""><img src="./assets/icon/like_star.png" alt="" /><b>4.7</b>(200+)</a>
-                        <span><img src="./assets/icon/bag.png" alt="" />Min. 50.00€</span>
-                        <span><img src="./assets/icon/delivery.png" alt="" /> 15.00€</span>
+                </section>
+                <section class="section_right_side">
+                    <div class="basket_main_container">
+                        <div class="basket_head">
+                            <h2>Warenkorb</h2>
+                            <button class="close_button_schoppingcart" onclick="closeShoppingcard()"><img src="./assets/icon/x.png" alt="" /></button>
+                        </div>
+                        <h3>Lieferoption</h3>
+                        <p>(Liefergebühr 5,00€)</p>
+                        <div class="delivery_or_not" onclick="toggleOrderType()">
+                            <div id="pickup" class="slider_option selected">Abholen</div>
+                            <div id="delivery" class="slider_option">Liefern</div>
+                            <div id="indicator"></div>
+                        </div>
+                        <div id="shoppingcartContent"></div>
+                        <div id="toPay"></div>
+                        <button onclick="canPlaceOrder()" class="order_button">Bestellen</button>
                     </div>
-                    <div class="menu_selection">
-                        <a href="#sushiContent">Sushi</a>
-                        <a href="#dessertContent">Dessers</a>
-                        <a href="#drinkContent">Getränke</a>
-                    </div>
-                    <h2>Sushi</h2>
-                    <div id="sushiContent" class="content_sushi"></div>
-                    <h2>Dessert</h2>
-                    <div id="dessertContent" class="content_dessert"></div>
-                    <h2>Getränke</h2>
-                    <div id="drinkContent" class="content_drinks"></div>
+                </section>
+            </main>
+
+            <footer>© Timo Kosfeld 2024</footer>
+            <button onclick="showShoppingCart()" id="shoppingCart" class="shopping_cart"><img src="./assets/icon/shoppingcart.png" alt="" /><span id="cartItemCount" class="cart-item-count">0</span></button>
+            <div id="aboutUsOverlay" class="overlay">
+                <div class="overlay-content">
+                    <span class="close_button" onclick="closeOverlay()">&times;</span>
+                    <h2>Über uns</h2>
+                    <p>Willkommen im Sushi Restaurant! Wir sind stolz darauf, Ihnen die frischesten und köstlichsten Sushi-Gerichte in der Stadt zu bieten. Unser engagiertes Team sorgt dafür, dass jede Mahlzeit ein unvergessliches Erlebnis wird.</p>
+                    <h3>Öffnungszeiten:</h3>
+                    <ul>
+                        <li>Montag - Freitag: 11:00 - 22:00 Uhr</li>
+                        <li>Samstag: 12:00 - 23:00 Uhr</li>
+                        <li>Sonntag: Geschlossen</li>
+                    </ul>
+                    <h3>Adresse:</h3>
+                    <p>Hauptstraße 123<br />12345 Musterstadt</p>
                 </div>
-            </section>
-            <section class="section_right_side">
-                <div class="basket_main_container">
-                    <h2>Warenkorb</h2>
-                    <h3>Lieferoption</h3>
-                    <p>(Liefergebühr 5,00€)</p>
-                    <div class="delivery_or_not" onclick="toggleOrderType()">
-                        <div id="pickup" class="slider_option selected">Abholen</div>
-                        <div id="delivery" class="slider_option">Liefern</div>
-                        <div id="indicator"></div>
-                    </div>
-                    <div id="shoppingcartContent"></div>
+            </div>
+            <div id="reviewsOverlay" class="overlay">
+                <div class="overlay-content">
+                    <span class="close_button" onclick="closeReviewsOverlay()">&times;</span>
+                    <h2>Bewertungen</h2>
+                    <ul>
+                        <li><strong>5 Sterne:</strong> Fantastisches Sushi! Immer frisch und lecker. - <em>Anna Müller, 12. Januar 2023</em></li>
+                        <li><strong>4 Sterne:</strong> Sehr gutes Essen, aber der Service könnte besser sein. - <em>Max Schmidt, 25. Februar 2023</em></li>
+                        <li><strong>3 Sterne:</strong> Durchschnittlich, nichts Besonderes. - <em>Lisa Becker, 10. März 2023</em></li>
+                        <li><strong>5 Sterne:</strong> Beste Sushi-Erfahrung, die ich je hatte! - <em>Tom Weber, 5. April 2023</em></li>
+                        <li><strong>2 Sterne:</strong> Nicht so gut wie erwartet. - <em>Sophie Fischer, 20. Mai 2023</em></li>
+                        <li><strong>4 Sterne:</strong> Gutes Preis-Leistungs-Verhältnis. - <em>Paul Wagner, 15. Juni 2023</em></li>
+                        <li><strong>5 Sterne:</strong> Absolut empfehlenswert! - <em>Emma Krause, 30. Juli 2023</em></li>
+                        <li><strong>3 Sterne:</strong> In Ordnung, aber es gibt bessere Optionen. - <em>Lucas Braun, 18. August 2023</em></li>
+                        <li><strong>1 Stern:</strong> Sehr enttäuschend. - <em>Julia Hofmann, 2. September 2023</em></li>
+                        <li><strong>5 Sterne:</strong> Ich liebe es! Immer wieder gerne. - <em>Leon Richter, 14. Oktober 2023</em></li>
+                        <li><strong>4 Sterne:</strong> Gutes Sushi, schnelle Lieferung. - <em>Nina Wolf, 22. November 2023</em></li>
+                    </ul>
                 </div>
-            </section>
-        </main>
-        <footer></footer>
+            </div>
+        </div>
     </body>
 </html>

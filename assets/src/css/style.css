@@ -19,7 +19,7 @@ main {
 }
 
 .bgr {
-    background-image: url(./assets/img/bgr.jpg);
+    background-image: url(../../img/bgr.jpg);
     height: 500px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -29,7 +29,6 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    height: 130px;
     border-radius: 5px;
     padding: 8px;
     border: black 1px solid;
@@ -38,7 +37,7 @@ main {
 
 #pickup.selected,
 #delivery.selected {
-  background-color: #f36805;
+    background-color: #f36805;
 }
 
 footer {
