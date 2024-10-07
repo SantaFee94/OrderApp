@@ -1,4 +1,6 @@
 let orderType = "pickup";
+const deliveryCost =5;
+const deliveryFree = 15;
 
 function init() {
     renderMenus();
@@ -37,7 +39,6 @@ function renderDrinks() {
 function renderShoppingcart() {
     let shoppingcartContentRef = document.getElementById("shoppingcartContent");
     shoppingcartContentRef.innerHTML = "";
-    
 
     for (let indexCart = 0; indexCart < shoppingcart.length; indexCart++) {
         shoppingcartContentRef.innerHTML += getMenuToCartTemplate(indexCart);
@@ -56,7 +57,7 @@ function checkingShoppingCart() {
 }
 
 function toggleLike() {
-    let likeImage = document.getElementById("likeImg")
+    let likeImage = document.getElementById("likeImg");
 
     if (likeImage.src.includes("none_like_heart.png")) {
         likeImage.src = "./assets/icon/like_heart.png";
@@ -68,29 +69,14 @@ function toggleOrderType() {
     orderType = orderType === "pickup" ? "delivery" : "pickup";
     updateOrderType(orderType);
     updateSlider();
-    renderTotalPrice(); // Preis sofort neu berechnen und anzeigen
+    renderTotalPrice();
 }
 
 function renderTotalPrice() {
-    let totalPriceContentRef = document.getElementById("toPay");
-    totalPriceContentRef.innerHTML = "";
-
-    let totalPrice;
-    if (shoppingcart.length == 0) {
-        totalPrice = 0;
-    } else {
-        totalPrice = shoppingcart.reduce((acc, current) => acc + current.price, 0);
-    }
-
-    // Überprüfen, ob der Bestelltyp "delivery" ist und die Liefergebühr hinzufügen
-    if (orderType === "delivery") {
-        totalPrice += 5; // 5€ Liefergebühr hinzufügen
-    }
-
-    let formattePrice = totalPrice;
-    formattePrice = formattePrice.toFixed(2);
-    formattePrice = formattePrice.replace(".", ",");
-    document.getElementById("toPay").innerHTML = "Gesamtpreis: " + formattePrice + "€";
+    let totalPrice = shoppingcart.reduce((acc, item) => acc + item.price, 0);
+    if (orderType === "delivery") totalPrice += deliveryCost;
+    let formattedPrice = totalPrice.toFixed(2).replace(".", ",");
+    document.getElementById("toPay").innerHTML = "Gesamtpreis: " + formattedPrice + "€";
 }
 
 function updateOrderType(type) {
@@ -111,37 +97,27 @@ function updateSlider() {
 }
 
 function canPlaceOrder() {
-    let totalPriceWithoutDelivery = 0;
-
-    if (shoppingcart.length > 0) {
-        totalPriceWithoutDelivery = shoppingcart.reduce((acc, current) => acc + current.price, 0);
-    }
-
-    if (shoppingcart.length == 0) {
-        alert("Fügen sie erst Produkte in den Warenkorb");
-        return false
-
-    }else if (orderType === "pickup") {
-        alert("Vielen Dank für ihre Bestellung. Sie können ihr Essen in etwa 30 Min. abholen");
-        clearShoppingCart();
-        return true;
-    } else if (orderType === "delivery" && totalPriceWithoutDelivery < 15) {
-        alert("Der Mindestbestellwert für Lieferungen beträgt 15€ ohne Liefergebühr.");
+    if (shoppingcart.length === 0) {
+        showOverlay("Fügen sie erst Produkte in den Warenkorb");
         return false;
-    } else if (orderType === "delivery" && totalPriceWithoutDelivery >= 15) {
-        alert("Vielen Dank für die Bestellung! Wir werden uns um die Lieferung kümmern.");
-        clearShoppingCart();
-        return true;
     }
-
+    const totalPrice = shoppingcart.reduce((acc, item) => acc + item.price, 0);
+    if (orderType === "pickup") {
+        showOverlay("Vielen Dank für ihre Bestellung. Sie können ihr Essen in etwa 30 Min. abholen");
+    } else if (orderType === "delivery") {
+        if (totalPrice < deliveryFree) {
+            showOverlay("Der Mindestbestellwert für Lieferungen beträgt 15€ ohne Liefergebühr.");
+            return false;
+        }
+        showOverlay("Vielen Dank für Ihre Bestellung! Wir werden Sie umgehend darüber informieren, wie lange die Lieferzeit beträgt.");
+    }
+    clearShoppingCart();
     return true;
-
-    
 }
 
 function clearShoppingCart() {
     shoppingcart = [];
     renderShoppingcart();
     renderTotalPrice();
-    closeShoppingcard()
+    closeShoppingcard();
 }

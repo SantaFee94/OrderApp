@@ -54,3 +54,40 @@ li{
     width: 32px;
     height: 32px;
 }
+
+.overlay_order {
+    position: fixed;
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay_order_content {
+    background-color: white;
+    padding: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.close_order_overlay{
+   border-radius: 12px;
+    height: 45px;
+    width: 128px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    gap: 4px;
+    transition: background-color 1s ease 0s;
+    &:hover{
+        background-color: grey;
+    }
+}

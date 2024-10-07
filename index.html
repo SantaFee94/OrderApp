@@ -17,7 +17,6 @@
         <script src="./assets/src/js/template.js"></script>
         <script src="./assets/src/js/database.js"></script>
         <script src="./assets/src/js/addToCart.js"></script>
-        <script src="./assets/src/js/mediaQuery.js"></script>
         <script src="./assets/src/js/overlay.js"></script>
     </head>
     <body onload="init()">
@@ -30,12 +29,12 @@
                         <div class="dishes_list_head">
                             <h1>Sushi Resturant</h1>
                             <div class="dishes_head_button_container">
-                                <button onclick="openOverlay()" class="dishes_list_head_button"><img src="./assets/icon/i_icon.png" alt="" />Über uns</button>
+                                <button onclick="toggleOverlay('aboutUsOverlay', 'block')" class="dishes_list_head_button"><img src="./assets/icon/i_icon.png" alt="" />Über uns</button>
                                 <button onclick="toggleLike()" class="dishes_list_head_like_button"><img id="likeImg" src="./assets/icon/none_like_heart.png" alt="" /></button>
                             </div>
                         </div>
                         <div class="user_information">
-                            <a onclick="openReviewsOverlay()"><img src="./assets/icon/like_star.png" alt="" /><b>4.7</b>(200+)</a>
+                            <a onclick="toggleOverlay('reviewsOverlay', 'block')"><img src="./assets/icon/like_star.png" alt="" /><b>4.7</b>(200+)</a>
                             <span><img src="./assets/icon/bag.png" alt="" />Min. 50.00€</span>
                             <span><img src="./assets/icon/delivery.png" alt="" /> 15.00€</span>
                         </div>
@@ -76,7 +75,7 @@
             <button onclick="showShoppingCart()" id="shoppingCart" class="shopping_cart"><img src="./assets/icon/shoppingcart.png" alt="" /><span id="cartItemCount" class="cart-item-count">0</span></button>
             <div id="aboutUsOverlay" class="overlay">
                 <div class="overlay-content">
-                    <span class="close_button" onclick="closeOverlay()">&times;</span>
+                    <span class="close_button" onclick="toggleOverlay('aboutUsOverlay', 'none')">&times;</span>
                     <h2>Über uns</h2>
                     <p>Willkommen im Sushi Restaurant! Wir sind stolz darauf, Ihnen die frischesten und köstlichsten Sushi-Gerichte in der Stadt zu bieten. Unser engagiertes Team sorgt dafür, dass jede Mahlzeit ein unvergessliches Erlebnis wird.</p>
                     <h3>Öffnungszeiten:</h3>
@@ -91,7 +90,7 @@
             </div>
             <div id="reviewsOverlay" class="overlay">
                 <div class="overlay-content">
-                    <span class="close_button" onclick="closeReviewsOverlay()">&times;</span>
+                    <span class="close_button" onclick="toggleOverlay('reviewsOverlay', 'none')">&times;</span>
                     <h2>Bewertungen</h2>
                     <ul>
                         <li><strong>5 Sterne:</strong> Fantastisches Sushi! Immer frisch und lecker. - <em>Anna Müller, 12. Januar 2023</em></li>
@@ -106,6 +105,12 @@
                         <li><strong>5 Sterne:</strong> Ich liebe es! Immer wieder gerne. - <em>Leon Richter, 14. Oktober 2023</em></li>
                         <li><strong>4 Sterne:</strong> Gutes Sushi, schnelle Lieferung. - <em>Nina Wolf, 22. November 2023</em></li>
                     </ul>
+                </div>
+            </div>
+            <div id="overlay" class="overlay_order" style="display: none">
+                <div class="overlay_order_content">
+                    <p id="overlay-message"></p>
+                    <button class="close_order_overlay" onclick="toggleOverlay('overlay', 'none')">OK</button>
                 </div>
             </div>
         </div>
