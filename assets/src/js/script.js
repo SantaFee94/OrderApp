@@ -1,5 +1,5 @@
 let orderType = "pickup";
-const deliveryCost =5;
+const deliveryCost = 5;
 const deliveryFree = 15;
 
 function init() {
@@ -9,31 +9,25 @@ function init() {
     checkingShoppingCart();
 }
 
-function renderMenus() {
-    let menuContentRef = document.getElementById("sushiContent");
-    menuContentRef.innerHTML = "";
+function renderItems(ContentId, items, getItemToHtml) {
+    let contentRef = document.getElementById(ContentId);
+    contentRef.innerHTML = "";
 
-    for (let indexMenu = 0; indexMenu < mainMenu.length; indexMenu++) {
-        menuContentRef.innerHTML += getMenuToHtml(indexMenu);
+    for (let index = 0; index < items.length; index++) {
+        contentRef.innerHTML += getItemToHtml(index);
     }
+}
+
+function renderMenus() {
+    renderItems("sushiContent", mainMenu, getMenuToHtml);
 }
 
 function renderDesserts() {
-    let dessertContentRef = document.getElementById("dessertContent");
-    dessertContentRef.innerHTML = "";
-
-    for (let indexDessert = 0; indexDessert < desserts.length; indexDessert++) {
-        dessertContentRef.innerHTML += getDessertToHtml(indexDessert);
-    }
+    renderItems("dessertContent", desserts, getDessertToHtml);
 }
 
 function renderDrinks() {
-    let drinkContentRef = document.getElementById("drinkContent");
-    drinkContentRef.innerHTML = "";
-
-    for (let indexDrink = 0; indexDrink < drinks.length; indexDrink++) {
-        drinkContentRef.innerHTML += getDrinksToHtml(indexDrink);
-    }
+    renderItems("drinkContent", drinks, getDrinksToHtml);
 }
 
 function renderShoppingcart() {
